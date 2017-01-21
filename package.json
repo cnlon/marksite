@@ -1,0 +1,8 @@
+{
+  "name": "marksite",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/cnlon/marksite.git",
+  "author": "lon <longhaohe@gmail.com>",
+  "license": "MIT"
+}
