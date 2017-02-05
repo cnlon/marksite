@@ -1,7 +1,10 @@
 {
   "name": "marksite",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.0",
   "main": "index.js",
+  "bin": {
+    "mark": "bin.js"
+  },
   "repository": "https://github.com/cnlon/marksite.git",
   "author": "lon <longhaohe@gmail.com>",
   "license": "MIT"

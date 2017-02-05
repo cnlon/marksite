@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<title>Index Page</title>
+<body>
+  <ul>
+${
+  files.map(file => {
+    const text = file.linked.headline
+    const href = file.path
+    const aTag = `<a href="${href}">${text}</a>`
+    const liTag = `<li>${aTag}</li>`
+    return liTag
+  }).join('\n')
+}
+  </ul>
+</body>
+</html>
