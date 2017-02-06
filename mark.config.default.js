@@ -1,6 +1,9 @@
 module.exports = {
   src: './markdown',
   dst: './html',
+  filter (fileName) {
+    return !/^\./.test(fileName) && /\.md$/i.test(fileName) && !/README.md/i.test(fileName)
+  },
   theme: './theme',
   publicPath: '',
   linked: {

@@ -90,13 +90,13 @@ async function saveMarkedIndex (markedFiles, config) {
 
 async function marksite (rawConfig) {
   const config = merge(rawConfig)
-  const {src, dst} = config
+  const {src, dst, filter} = config
 
   const stats = await fsAsync.stat(src)
   if (stats.isDirectory()) {
     const fileNames = await fsAsync.readdir(src)
 
-    const params = fileNames.map(fileName => {
+    const params = fileNames.filter(filter).map(fileName => {
       const name = suffixMd2Html(fileName)
       return {
         src: `${src}/${fileName}`,
