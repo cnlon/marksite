@@ -11,5 +11,5 @@ npm install -g marksite
 Usage
 
 ```bash
-which mark | xargs node --harmony
+mark
 ```
