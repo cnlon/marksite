@@ -25,7 +25,6 @@ if (!supportAsync) {
   const program = require('./commander')
   program.version(pkg.version)
     .usage('[options]')
-    .option('-h, --help', '显示帮助信息')
     .option('-c, --config <path>', '配置文件路径，默认："./mark.config.js"', './mark.config.js')
     .option('-s, --src <path>', '输入文件名或文件夹，默认："./markdown"', './markdown')
     .option('-d, --dst <path>', '输出文件名或文件夹，默认："./html"', './html')
