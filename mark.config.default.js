@@ -9,7 +9,7 @@ module.exports = {
   linked: {
     '@context': 'http://schema.org',
     '@type': 'BlogPosting',
-    inLanguage: 'en',
+    inLanguage: 'zh',
     encoding: 'utf-8',
     fileFormat: 'text/html',
     license: 'http://opensource.org/licenses/MIT',
