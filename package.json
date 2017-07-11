@@ -10,6 +10,6 @@
   "repository": "https://github.com/cnlon/marksite.git",
   "license": "MIT",
   "engines": {
-    "node": ">= 7.0.x"
+    "node": ">= 8"
   }
 }
