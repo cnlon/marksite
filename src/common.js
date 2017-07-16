@@ -11,25 +11,6 @@ function getFileNameFromFilePath (path) {
   return path.match(FILE_NAME_RE)[1]
 }
 
-const fsAsync = new Proxy({}, {
-  get: function (target, key, receiver) {
-    if (key === 'constants') {
-      return fs.constants
-    }
-    return function (...args) {
-      return new Promise((resolve, reject) => {
-        fs[key](...args, (error, value) => {
-          if (error) {
-            reject(error)
-          } else {
-            resolve(value)
-          }
-        })
-      })
-    }
-  }
-})
-
 function merge (...args) {
   if (args.length === 0) {
     return defaultConfig
@@ -58,7 +39,6 @@ function sortObjectByKey (object) {
 module.exports = {
   suffixMd2Html,
   getFileNameFromFilePath,
-  fsAsync,
   merge,
   sortObjectByKey,
 }

@@ -1,8 +1,8 @@
+const fs = require('promisified-fs')
 const mark = require('../core/')
 const {
   suffixMd2Html,
   getFileNameFromFilePath,
-  fsAsync,
   merge,
   sortObjectByKey,
 } = require('./common')
@@ -34,7 +34,7 @@ class MarkedFile {
 }
 
 async function markFile ({src, dst, name}, {linked, publicPath}) {
-  const content = await fsAsync.readFile(src, 'utf8')
+  const content = await fs.readFile(src, 'utf8')
   let markedPair
   try {
     markedPair = mark(content)
@@ -56,7 +56,7 @@ async function markFile ({src, dst, name}, {linked, publicPath}) {
 async function saveMarkedFile (markedFile, config) {
   const {dst} = markedFile
   const {theme} = config
-  const template = await fsAsync.readFile(`${theme}/item.html`)
+  const template = await fs.readFile(`${theme}/item.html`)
   try {
     const fun = new Function(
       '{src, dst, path, markedPair, linked, content, output}',
@@ -64,7 +64,7 @@ async function saveMarkedFile (markedFile, config) {
       'return `' + template + '`'
     )
     const html = fun(markedFile, config)
-    await fsAsync.writeFile(dst, html)
+    await fs.writeFile(dst, html)
   } catch (error) {
     console.error('Error when save marked file: ', markedFile)
     throw error
@@ -73,7 +73,7 @@ async function saveMarkedFile (markedFile, config) {
 
 async function saveMarkedIndex (markedFiles, config) {
   const {dst, theme} = config
-  const template = await fsAsync.readFile(`${theme}/index.html`)
+  const template = await fs.readFile(`${theme}/index.html`)
   try {
     const fun = new Function(
       'files',
@@ -81,7 +81,7 @@ async function saveMarkedIndex (markedFiles, config) {
       'return `' + template + '`'
     )
     const html = fun(markedFiles, config)
-    await fsAsync.writeFile(`${dst}/index.html`, html)
+    await fs.writeFile(`${dst}/index.html`, html)
   } catch (error) {
     console.error('Error when save marked index: ', markedFiles)
     throw error
@@ -92,9 +92,9 @@ async function marksite (rawConfig) {
   const config = merge(rawConfig)
   const {src, dst, filter} = config
 
-  const stats = await fsAsync.stat(src)
+  const stats = await fs.stat(src)
   if (stats.isDirectory()) {
-    const fileNames = await fsAsync.readdir(src)
+    const fileNames = await fs.readdir(src)
 
     const params = fileNames.filter(filter).map(fileName => {
       const name = suffixMd2Html(fileName)
