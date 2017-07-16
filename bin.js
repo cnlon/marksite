@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const pkg = require('./package.json')
-const program = require('./commander')
+const program = require('commander')
 const defaultConfig = require('./mark.config.default')
 
 const configPath = './mark.config.js'
